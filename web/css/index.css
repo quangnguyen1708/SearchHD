@@ -1,0 +1,62 @@
+#Lichsuhear2{
+    font-size: 25px;
+    width: 500px;
+    margin-left: 145px;
+    margin-top: 1px;  
+    text-align: left;
+}
+
+#img17{
+    width: 35%;
+    height: 30%;
+    float: right;
+    border-radius: 10px;
+    margin-right: 150px;
+    padding-bottom: 5px;
+}
+
+.in{
+    color: brown;
+    
+}
+.canhle1{
+    font-weight: normal;
+    margin-left: 121px;
+}
+
+.canhle2{
+    font-weight: normal;
+    margin-left: 153px;
+}
+.canhle3{
+    font-weight: normal;
+    margin-left: 132px;
+}
+.canhle4{
+    font-weight: normal;
+    margin-left: 55px;
+}
+.canhle5{
+    font-weight: normal;
+    margin-left: 193px;
+}
+.canhle6{
+    font-weight: normal;
+    margin-left: 150px;
+}
+.canhle7{
+    font-weight: normal;
+    margin-left: 58px;
+}
+footer{
+     
+    border-top: 10px double rgb(253, 0, 0);
+    border-top-style: inset;
+    background-color: rgb(247, 125, 81);
+    text-align: center;
+    clear: both;
+      line-height: 28px;
+      font-size: 19px;
+      color: white;
+    
+}

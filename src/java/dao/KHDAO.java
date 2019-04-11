@@ -1,0 +1,110 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
+
+import duan.DAO.ThongTinKhachHangDAO;
+import duan.JDBC.JDBC;
+import entity.CanHo;
+import entity.HoaDonSinhHoat;
+import entity.ThongTinKhachHang;
+import java.sql.ResultSet;
+import java.text.NumberFormat;
+import java.time.chrono.ThaiBuddhistChronology;
+import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import until.HibernateUtil;
+
+/**
+ *
+ * @author Admin
+ */
+public class KHDAO {
+
+    public static List<ThongTinKhachHang> Show2Bang() {
+        List<ThongTinKhachHang> list = null;
+        try {
+            String sql = " from ThongTinKhachHang kh inner join fetch kh.canHo c";
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            Query query = session.createQuery(sql);
+            list = query.list();
+            list.stream().forEach((p) -> {
+                System.out.println(p.getSoDt());
+                System.out.println(p.getCanHo().getTang());
+
+            });
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+
+    }
+
+    public static List<ThongTinKhachHang> TimKH(String sdt) {
+        List<ThongTinKhachHang> list = null;
+        try {
+            String sql = " from ThongTinKhachHang kh inner join fetch kh.canHo c";
+
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session.beginTransaction();
+            if (sdt.length() > 0) {
+                sql += " where kh.soDt = '" + sdt + "'";
+            }
+            Query query = session.createQuery(sql);
+            list = query.list();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+
+    }
+
+    public static List<HoaDonSinhHoat> ctsh(String sdt) {
+
+        List<HoaDonSinhHoat> list = null;
+        ResultSet rs = JDBC.executeQuery("EXec SearchSDT @sdt = ?", sdt);
+        try {
+              NumberFormat nf = NumberFormat.getInstance();
+               nf.setMinimumIntegerDigits(0);
+            list = new ArrayList<>();
+            while (rs.next()) {
+                ThongTinKhachHang t = new ThongTinKhachHang(); // doi tuong
+                CanHo ch = new CanHo(); //canho
+                HoaDonSinhHoat sh = new HoaDonSinhHoat();
+                t.setTenKhachHang(rs.getString(2)); // du lieu/ chinh lai cot
+                t.setKhachHangId(rs.getString(1));       
+                t.setSoDt(rs.getString(3));
+                ch.setCanHoId(rs.getString(4));
+                //chinh la cai ch.setkhachhang(t) ma t la ThongTinhKhachHang ah hiu r hiu r
+                ch.setKhachHang(t); //gio du lieu KH da add vao Doi TUOng can ho, cos nghia can ho la chu so huu cua KH do. hieu chua
+                sh.setMaHddien(rs.getString(5));
+                sh.setChiSoDienBanDau(rs.getInt(6));
+                sh.setChiSoDienCuoi(rs.getInt(7));
+                sh.setTienDien(rs.getDouble(8));
+                sh.setMaHdnuoc(rs.getString(9));
+                sh.setChiSoNuocBanDau(rs.getInt(10));
+                sh.setChiSoNuocCuoi(rs.getInt(11));
+                sh.setTienNuoc(rs.getDouble(12));
+                sh.setNgayThang(rs.getDate(13));
+                sh.setCanHo(ch);
+                list.add(sh);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    public static void main(String[] args) {
+       List<HoaDonSinhHoat> lisst =  ctsh("0908118444");
+        
+        System.out.println(lisst.get(0).getCanHo().getKhachHang().getTenKhachHang());
+
+    }
+}

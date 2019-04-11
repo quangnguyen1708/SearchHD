@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 8, 2019 9:05:05 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.ThongTinKhachHang" table="ThongTinKhachHang" schema="dbo" catalog="DuAn1" optimistic-lock="version">
+        <id name="khachHangId" type="string">
+            <column name="KhachHangId" length="10" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="canHo" class="entity.CanHo" fetch="select">
+            <column name="CanHoId" length="5" />
+        </many-to-one>
+        <property name="tenKhachHang" type="string">
+            <column name="TenKhachHang" />
+        </property>
+        <property name="cmnd" type="string">
+            <column name="CMND" length="20" />
+        </property>
+        <property name="gioiTinh" type="java.lang.Boolean">
+            <column name="GioiTinh" />
+        </property>
+        <property name="soDt" type="string">
+            <column name="SoDT" length="10" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" />
+        </property>
+        <property name="trangThai" type="string">
+            <column name="TrangThai" />
+        </property>
+        <property name="chuHo" type="java.lang.Boolean">
+            <column name="ChuHo" />
+        </property>
+    </class>
+</hibernate-mapping>

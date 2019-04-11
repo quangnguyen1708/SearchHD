@@ -1,0 +1,47 @@
+
+.btn:hover{
+    background-color: #71c6c1;;
+}
+.btn{
+    border: none;
+    background: #71c6c1;
+    cursor: pointer;        /*Thay đổi con trỏ chuột khi di chuyển vào button*/
+    border-radius: 3px;
+    padding:8px 11px ;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 15px;
+    outline:none ;
+    box-shadow: 0 3px 3px 0 rgb(0, 0, 0, 0.2);
+  }
+
+  .login-form fieldset{
+    border-radius: 5px;
+}
+ 
+
+.login-form .user:focus{
+    background-color: aquamarine;
+}
+
+
+
+/*---------------------------*/
+
+.login-form .phone:focus{
+    background-color: aquamarine;
+}
+
+
+/*---------------------------*/
+
+.login-form .email:focus{
+    background-color: aquamarine;
+}
+
+/*---------------------------*/
+
+.login-form .mess:focus{
+    background-color: aquamarine;
+}

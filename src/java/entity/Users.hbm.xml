@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 8, 2019 9:05:05 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="entity.Users" table="Users" schema="dbo" catalog="DuAn1" optimistic-lock="version">
+        <id name="userId" type="string">
+            <column name="UserId" length="50" />
+            <generator class="assigned" />
+        </id>
+        <property name="pass" type="string">
+            <column name="Pass" length="50" />
+        </property>
+        <property name="ten" type="serializable">
+            <column name="Ten" />
+        </property>
+        <property name="email" type="serializable">
+            <column name="Email" />
+        </property>
+        <property name="soDt" type="serializable">
+            <column name="SoDT" />
+        </property>
+        <set name="hoaDonDichVus" table="HoaDonDichVu" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="UserId" length="50" />
+            </key>
+            <one-to-many class="entity.HoaDonDichVu" />
+        </set>
+    </class>
+</hibernate-mapping>
